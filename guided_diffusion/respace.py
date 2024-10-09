@@ -127,6 +127,8 @@ class _WrappedModel:
 
 
     def __call__(self, x, ts, **kwargs):
+        # Converting timestep indices from float32 to long
+        ts = ts.long()
         map_tensor = th.tensor(self.timestep_map, device=ts.device, dtype=ts.dtype)
         new_ts = map_tensor[ts]
 

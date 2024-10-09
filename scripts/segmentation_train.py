@@ -1,7 +1,8 @@
 
+import os
 import sys
 import argparse
-sys.path.append("../")
+# sys.path.append("../")
 sys.path.append("./")
 from guided_diffusion import dist_util, logger
 from guided_diffusion.resample import create_named_schedule_sampler
@@ -16,14 +17,16 @@ from guided_diffusion.script_util import (
 )
 import torch as th
 from guided_diffusion.train_util import TrainLoop
-from visdom import Visdom
-viz = Visdom(port=8850)
+# from visdom import Visdom
+# viz = Visdom(port=8850)
 import torchvision.transforms as transforms
+
 
 def main():
     args = create_argparser().parse_args()
-
-    dist_util.setup_dist(args)
+    
+    logger.log('--------in here')
+    # dist_util.setup_dist(args)
     logger.configure(dir = args.out_dir)
 
     logger.log("creating data loader...")
@@ -33,6 +36,7 @@ def main():
         transform_train = transforms.Compose(tran_list)
 
         ds = ISICDataset(args, args.data_dir, transform_train)
+        
         args.in_ch = 4
     elif args.data_name == 'BRATS':
         tran_list = [transforms.Resize((args.image_size,args.image_size)),]
@@ -60,13 +64,14 @@ def main():
     )
     if args.multi_gpu:
         model = th.nn.DataParallel(model,device_ids=[int(id) for id in args.multi_gpu.split(',')])
-        model.to(device = th.device('cuda', int(args.gpu_dev)))
+        model.to(device = th.device('mps', int(args.gpu_dev)))
     else:
         model.to(dist_util.dev())
     schedule_sampler = create_named_schedule_sampler(args.schedule_sampler, diffusion,  maxt=args.diffusion_steps)
 
 
     logger.log("training...")
+    
     TrainLoop(
         model=model,
         diffusion=diffusion,
@@ -102,7 +107,7 @@ def create_argparser():
         log_interval=100,
         save_interval=5000,
         resume_checkpoint=None, #"/results/pretrainedmodel.pt"
-        use_fp16=False,
+        use_fp16=True,
         fp16_scale_growth=1e-3,
         gpu_dev = "0",
         multi_gpu = None, #"0,1,2"

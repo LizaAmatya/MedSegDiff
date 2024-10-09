@@ -1,4 +1,5 @@
 import copy
+from datetime import time
 import functools
 import os
 
@@ -76,9 +77,10 @@ class TrainLoop:
 
         self.step = 0
         self.resume_step = 0
-        self.global_batch = self.batch_size * dist.get_world_size()
+        # self.global_batch = self.batch_size * dist.get_world_size()
+        self.global_batch = self.batch_size
 
-        self.sync_cuda = th.cuda.is_available()
+        self.sync_cuda = th.backends.mps.is_available()
 
         self._load_and_sync_parameters()
         self.mp_trainer = MixedPrecisionTrainer(
@@ -103,24 +105,35 @@ class TrainLoop:
                 for _ in range(len(self.ema_rate))
             ]
 
-        if th.cuda.is_available():
-            self.use_ddp = True
-            self.ddp_model = DDP(
-                self.model,
-                device_ids=[dist_util.dev()],
-                output_device=dist_util.dev(),
-                broadcast_buffers=False,
-                bucket_cap_mb=128,
-                find_unused_parameters=False,
-            )
+        # if th.cuda.is_available():  # For distibuted GPU process
+        #     self.use_ddp = True
+        #     self.ddp_model = DDP(
+        #         self.model,
+        #         device_ids=[dist_util.dev()],
+        #         output_device=dist_util.dev(),
+        #         broadcast_buffers=False,
+        #         bucket_cap_mb=128,
+        #         find_unused_parameters=False,
+        #     )
+        # else:
+        #     if dist.get_world_size() > 1:
+        #         logger.warn(
+        #             "Distributed training requires CUDA. "
+        #             "Gradients will not be synchronized properly!"
+        #         )
+        #     self.use_ddp = False
+        #     self.ddp_model = self.model
+        
+        if th.backends.mps.is_available():
+            self.device = 'mps'
         else:
-            if dist.get_world_size() > 1:
-                logger.warn(
-                    "Distributed training requires CUDA. "
-                    "Gradients will not be synchronized properly!"
-                )
-            self.use_ddp = False
-            self.ddp_model = self.model
+            self.device = 'cpu'
+        self.use_ddp = False
+        self.ddp_model = self.model
+        
+        # Convert To float32 too use MPS
+        self.model = self.model.convert_to_fp32()
+        
 
     def _load_and_sync_parameters(self):
         resume_checkpoint = find_resume_checkpoint() or self.resume_checkpoint
@@ -136,7 +149,7 @@ class TrainLoop:
                     )
                 )
 
-        dist_util.sync_params(self.model.parameters())
+        # dist_util.sync_params(self.model.parameters())
 
     def _load_ema_parameters(self, rate):
         ema_params = copy.deepcopy(self.mp_trainer.master_params)
@@ -151,7 +164,7 @@ class TrainLoop:
                 )
                 ema_params = self.mp_trainer.state_dict_to_master_params(state_dict)
 
-        dist_util.sync_params(ema_params)
+        # dist_util.sync_params(ema_params)
         return ema_params
 
     def _load_optimizer_state(self):
@@ -190,14 +203,18 @@ class TrainLoop:
           
             if self.step % self.log_interval == 0:
                 logger.dumpkvs()
+            print('self step----and interval', self.step, self.save_interval)
             if self.step % self.save_interval == 0:
+                start_time = time.time()
                 self.save()
+                print(f"Checkpoint saved in {time.time() - start_time:.2f} seconds.")
                 # Run for a finite amount of time in integration tests.
                 if os.environ.get("DIFFUSION_TRAINING_TEST", "") and self.step > 0:
                     return
             self.step += 1
         # Save the last checkpoint if it wasn't already saved.
         if (self.step - 1) % self.save_interval != 0:
+            print('last step', self.step)
             self.save()
 
     def run_step(self, batch, cond):
@@ -217,20 +234,25 @@ class TrainLoop:
         self.mp_trainer.zero_grad()
         for i in range(0, batch.shape[0], self.microbatch):
             micro = batch[i : i + self.microbatch].to(dist_util.dev())
+            print('micro', micro.dtype)
             micro_cond = {
-                k: v[i : i + self.microbatch].to(dist_util.dev())
+                k: v[i : i + self.microbatch].float().to(dist_util.dev())
                 for k, v in cond.items()
             }
 
+            print('micro cond', micro_cond)
+            
             last_batch = (i + self.microbatch) >= batch.shape[0]
             t, weights = self.schedule_sampler.sample(micro.shape[0], dist_util.dev())
 
+            print('batch shape', last_batch)
+            print('---tensor',t.shape)
             compute_losses = functools.partial(
                 self.diffusion.training_losses_segmentation,
                 self.ddp_model,
                 self.classifier,
-                micro,
-                t,
+                micro.float(),
+                t.float(),
                 model_kwargs=micro_cond,
             )
 
@@ -278,27 +300,34 @@ class TrainLoop:
     def save(self):
         def save_checkpoint(rate, params):
             state_dict = self.mp_trainer.master_params_to_state_dict(params)
-            if dist.get_rank() == 0:
-                logger.log(f"saving model {rate}...")
-                if not rate:
-                    filename = f"savedmodel{(self.step+self.resume_step):06d}.pt"
-                else:
-                    filename = f"emasavedmodel_{rate}_{(self.step+self.resume_step):06d}.pt"
-                with bf.BlobFile(bf.join(get_blob_logdir(), filename), "wb") as f:
-                    th.save(state_dict, f)
+            # if dist.get_rank() == 0:  no distributed devices running on mps
+            logger.log(f"saving model {rate}...")
+            if not rate:
+                filename = f"savedmodel{(self.step+self.resume_step):06d}.pt"
+            else:
+                filename = f"emasavedmodel_{rate}_{(self.step+self.resume_step):06d}.pt"
+            with bf.BlobFile(bf.join(get_blob_logdir(), filename), "wb") as f:
+                th.save(state_dict, f)
 
         save_checkpoint(0, self.mp_trainer.master_params)
         for rate, params in zip(self.ema_rate, self.ema_params):
             save_checkpoint(rate, params)
+            
+        checkpoint_path = os.path.join(
+            get_blob_logdir(), f"optsavedmodel{(self.step + self.resume_step):06d}.pt"
+        )
 
-        if dist.get_rank() == 0:
-            with bf.BlobFile(
-                bf.join(get_blob_logdir(), f"optsavedmodel{(self.step+self.resume_step):06d}.pt"),
-                "wb",
-            ) as f:
-                th.save(self.opt.state_dict(), f)
+        with bf.BlobFile(checkpoint_path, "wb") as f:
+            th.save(self.opt.state_dict(), f)
 
-        dist.barrier()
+        # if dist.get_rank() == 0:
+        #     with bf.BlobFile(
+        #         bf.join(get_blob_logdir(), f"optsavedmodel{(self.step+self.resume_step):06d}.pt"),
+        #         "wb",
+        #     ) as f:
+        #         th.save(self.opt.state_dict(), f)
+
+        # dist.barrier()
 
 
 def parse_resume_step_from_filename(filename):

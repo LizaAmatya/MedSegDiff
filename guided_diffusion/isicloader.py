@@ -13,11 +13,27 @@ import torchvision.transforms as transforms
 import pandas as pd
 from skimage.transform import rotate
 
+
+BASE_PATH = os.path.abspath(".")
+
+print('path', BASE_PATH)
+
 class ISICDataset(Dataset):
     def __init__(self, args, data_path , transform = None, mode = 'Training',plane = False):
 
-
-        df = pd.read_csv(os.path.join(data_path, 'ISBI2016_ISIC_Part3B_' + mode + '_GroundTruth.csv'), encoding='gbk')
+        data_path = os.path.join(
+                BASE_PATH +
+                data_path)
+        
+        print('----data path', data_path)
+        
+        df = pd.read_csv(
+            os.path.join(
+                data_path,
+                "ISBI2016_ISIC_Part1_" + mode + "_GroundTruth.csv",
+            ),
+            encoding="gbk",
+        )
         self.name_list = df.iloc[:,1].tolist()
         self.label_list = df.iloc[:,2].tolist()
         self.data_path = data_path

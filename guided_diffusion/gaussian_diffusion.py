@@ -165,6 +165,16 @@ class GaussianDiffusion:
         self.log_one_minus_alphas_cumprod = np.log(1.0 - self.alphas_cumprod)
         self.sqrt_recip_alphas_cumprod = np.sqrt(1.0 / self.alphas_cumprod)
         self.sqrt_recipm1_alphas_cumprod = np.sqrt(1.0 / self.alphas_cumprod - 1)
+        
+        # Convert numpy array from float 64 to float 32
+        # So, converting from array to tennsor and back to np array of float 32
+        self.sqrt_alphas_cumprod = torch.from_numpy(self.sqrt_alphas_cumprod).float()
+        self.sqrt_alphas_cumprod = self.sqrt_alphas_cumprod.numpy()
+        
+        self.sqrt_one_minus_alphas_cumprod = torch.from_numpy(
+            self.sqrt_one_minus_alphas_cumprod
+        ).float()
+        self.sqrt_one_minus_alphas_cumprod = self.sqrt_one_minus_alphas_cumprod.numpy()
 
         # calculations for posterior q(x_{t-1} | x_t, x_0)
         self.posterior_variance = (
@@ -175,6 +185,14 @@ class GaussianDiffusion:
         self.posterior_log_variance_clipped = np.log(
             np.append(self.posterior_variance[1], self.posterior_variance[1:])
         )
+        
+        # Convert to float32
+        self.posterior_variance = torch.from_numpy(self.posterior_variance).float()
+        self.posterior_variance = self.posterior_variance.numpy()
+        
+        self.posterior_log_variance_clipped = torch.from_numpy(self.posterior_log_variance_clipped).float()
+        self.posterior_log_variance_clipped = self.posterior_log_variance_clipped.numpy()
+        
         self.posterior_mean_coef1 = (
             betas * np.sqrt(self.alphas_cumprod_prev) / (1.0 - self.alphas_cumprod)
         )
@@ -183,6 +201,13 @@ class GaussianDiffusion:
             * np.sqrt(alphas)
             / (1.0 - self.alphas_cumprod)
         )
+        
+        # Convert to float32
+        self.posterior_mean_coef1 = torch.from_numpy(self.posterior_mean_coef1).float()
+        self.posterior_mean_coef1 = self.posterior_mean_coef1.numpy()
+        
+        self.posterior_mean_coef2 = torch.from_numpy(self.posterior_mean_coef2).float()
+        self.posterior_mean_coef2 = self.posterior_mean_coef2.numpy()
 
     def q_mean_variance(self, x_start, t):
         """
@@ -209,8 +234,25 @@ class GaussianDiffusion:
         :param noise: if specified, the split-out normal noise.
         :return: A noisy version of x_start.
         """
+        # Convert numpy array from float 64 to float 32
+        # So, converting from array to tennsor and back to np array of float 32
+        # self.sqrt_alphas_cumprod = torch.from_numpy(self.sqrt_alphas_cumprod).float()
+        # self.sqrt_alphas_cumprod = self.sqrt_alphas_cumprod.numpy()
+        
+        # self.sqrt_one_minus_alphas_cumprod = torch.from_numpy(
+        #     self.sqrt_one_minus_alphas_cumprod
+        # ).float()
+        # self.sqrt_one_minus_alphas_cumprod = self.sqrt_one_minus_alphas_cumprod.numpy()
+        
+        print('tye of sqrt alphas array', type(self.sqrt_alphas_cumprod), self.sqrt_alphas_cumprod.dtype)
         if noise is None:
             noise = th.randn_like(x_start)
+        print('x start sahe', x_start.dtype, noise.dtype)
+        print(
+            "here dtype",
+            noise.shape == x_start.shape,
+            self.sqrt_alphas_cumprod.dtype,
+            self.sqrt_alphas_cumprod.shape)
         assert noise.shape == x_start.shape
         return (
                 _extract_into_tensor(self.sqrt_alphas_cumprod, t, x_start.shape) * x_start
@@ -269,6 +311,7 @@ class GaussianDiffusion:
         C=1
         cal = 0
         assert t.shape == (B,)
+        print('times step t-----', t.dtype)
         model_output = model(x, self._scale_timesteps(t), **model_kwargs)
         if isinstance(model_output, tuple):
             model_output, cal = model_output
@@ -1132,6 +1175,15 @@ def _extract_into_tensor(arr, timesteps, broadcast_shape):
                             dimension equal to the length of timesteps.
     :return: a tensor of shape [batch_size, 1, ...] where the shape has K dims.
     """
+    # print('timesteps dtype', timesteps.dtype)
+    # print("arr dtype", arr.dtype)
+    # Converting timestep indices from float32 to long
+    if arr.dtype != 'float32':
+        print('in here---')
+        arr = torch.from_numpy(arr).float()
+        arr = arr.numpy()
+        print('arr dtype', arr.dtype)
+    timesteps = timesteps.long()
     res = th.from_numpy(arr).to(device=timesteps.device)[timesteps].float()
     while len(res.shape) < len(broadcast_shape):
         res = res[..., None]
