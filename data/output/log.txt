@@ -1,0 +1,24 @@
+Logging to data/output
+creating data loader...
+creating model and diffusion...
+training...
+---------------------------
+| grad_norm    | 19.5     |
+| loss         | 1.02     |
+| loss_cal     | 0.179    |
+| loss_cal_q1  | 0.192    |
+| loss_cal_q3  | 0.166    |
+| loss_diff    | 1.01     |
+| loss_diff_q1 | 1.02     |
+| loss_diff_q3 | 1        |
+| loss_q1      | 1.03     |
+| loss_q3      | 1.01     |
+| param_norm   | 233      |
+| samples      | 2        |
+| step         | 0        |
+| vb           | 0.0103   |
+| vb_q1        | 0.00806  |
+| vb_q3        | 0.0126   |
+---------------------------
+saving model 0...
+saving model 0.9999...
