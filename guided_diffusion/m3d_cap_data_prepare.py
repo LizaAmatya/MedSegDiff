@@ -6,6 +6,8 @@ from collections import Counter
 import torchvision.transforms as ttf
 from multiprocessing import Pool
 from unidecode import unidecode
+from monai.transforms import CropForeground
+
 
 parent_dir = os.path.dirname(os.getcwd())
 print("curr dir", parent_dir)
@@ -22,7 +24,7 @@ subfolders = [folder for folder in os.listdir(input_dir) if os.path.isdir(os.pat
 
 transform = ttf.Compose(
     [
-        # ttf.CropForeground(),
+        CropForeground(),
         ttf.Resize(size=(256, 256), interpolation=ttf.InterpolationMode.BILINEAR)
     ]
 )
@@ -71,12 +73,12 @@ def process_subfolder(subfolder):
         subsubfolder_path = os.path.join(input_dir, subfolder, subsubfolder)
 
         if os.path.isdir(subsubfolder_path):
-            subsubfolder = unidecode(subsubfolder) # "Pöschl" -> Poschl
+            print('sub sub folder', subsubfolder_path)
+            subsubfolder = unidecode(subsubfolder)
             output_path = os.path.join(output_dir, subfolder, f'{subsubfolder}.npy')
 
             image_files = [file for file in os.listdir(subsubfolder_path) if
                            file.endswith('.jpeg') or file.endswith('.png')]
-
             if len(image_files) == 0:
                 continue
 
@@ -92,8 +94,8 @@ def process_subfolder(subfolder):
                     # normalization
                     img_array = img_array.astype(np.float32) / 255.0
                     images_3d.append(img_array[None])
-                except:
-                    print("This image is error: ", image_path)
+                except Exception as e:
+                    print("This image is error: ", e)
 
             images_3d_pure = []
             try:
@@ -103,19 +105,25 @@ def process_subfolder(subfolder):
                 for img in images_3d:
                     if img.shape == most_common_shape:
                         images_3d_pure.append(img)
+                        print('3d image pure', img.shape)
                 final_3d_image = np.vstack(images_3d_pure)
+                print('3d images pure @@@@@@@', type(images_3d_pure))
+                print("final 3d image @@@@@@@", type(final_3d_image), final_3d_image.shape)
 
                 image = final_3d_image[np.newaxis, ...]
-
+                print('here process 1', type(image), image.shape)
                 image = image - image.min()
                 image = image / np.clip(image.max(), a_min=1e-8, a_max=None)
+                print("here process 2", image.shape)
 
                 img_trans = transform(image)
-
+                # print('-----image trans', img_trans.shape)
                 np.save(output_path, img_trans)
-            except:
+            except Exception as e:
                 print([img.shape for img in images_3d])
-                print("This folder is vstack error: ", output_path)
+                print("This folder is vstack error: ", e)
+                
+                return
 
 
 if __name__ == "__main__":
@@ -123,3 +131,4 @@ if __name__ == "__main__":
         with tqdm(total=len(subfolders), desc="Processing") as pbar:
             for _ in pool.imap_unordered(process_subfolder, subfolders):
                 pbar.update(1)
+                
