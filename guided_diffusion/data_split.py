@@ -2,16 +2,21 @@ import os
 import json
 import random
 
-parent_dir = os.path.dirname(os.getcwd())
-print("curr dir", parent_dir)
-base_dir = os.path.join(parent_dir, "M3D_Cap_npy/")
-output_json = "dataset_split.json"  # Output JSON file
+# parent_dir = os.path.dirname(os.getcwd())
+parent_dir = '/media/'      # Data folder
+# print("curr dir", parent_dir)
+base_dir = os.path.join(parent_dir, "M3Ddataset/M3D_Cap_npy/ct_quizze/")
+op_dir = os.getcwd()
+# print('output dir', op_dir)
+output_json = os.path.join(op_dir + '/data/', "dataset_split.json") # Output JSON file
+# print('output dir', op_dir)
 
 train_data = []
 test_data = []
 
 for root, dirs, files in os.walk(base_dir):
     for file in files:
+        print('file', file)
         if file.endswith(".npy"):
             image_path = os.path.join(root, file)
             # Get the path to the corresponding text file
@@ -22,7 +27,7 @@ for root, dirs, files in os.walk(base_dir):
                 entry = {"image": image_path, "text": text_file}
 
                 # Randomly assign to train or test (e.g., 80-20 split)
-                if random.random() < 0.8:
+                if random.random() < 0.9:
                     train_data.append(entry)
                 else:
                     test_data.append(entry)

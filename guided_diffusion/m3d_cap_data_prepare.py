@@ -9,7 +9,8 @@ from unidecode import unidecode
 from monai.transforms import CropForeground
 
 
-parent_dir = os.path.dirname(os.getcwd())
+# parent_dir = os.path.dirname(os.getcwd())
+parent_dir = '/media/'
 print("curr dir", parent_dir)
 base_dir = os.path.join(parent_dir, 'M3Ddataset/')
 

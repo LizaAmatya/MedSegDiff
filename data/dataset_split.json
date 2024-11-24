@@ -1,0 +1,614 @@
+{
+    "train": [
+        {
+            "image": "/media/M3Ddataset/M3D_Cap_npy/ct_quizze/000045/Axial_lung_window.npy",
+            "text": "/media/M3Ddataset/M3D_Cap_npy/ct_quizze/000045/text.txt"
+        },
+        {
+            "image": "/media/M3Ddataset/M3D_Cap_npy/ct_quizze/000206/3D_VR_None.npy",
+            "text": "/media/M3Ddataset/M3D_Cap_npy/ct_quizze/000206/text.txt"
+        },
+        {
+            "image": "/media/M3Ddataset/M3D_Cap_npy/ct_quizze/000206/Axial_non_contrast.npy",
+            "text": "/media/M3Ddataset/M3D_Cap_npy/ct_quizze/000206/text.txt"
+        },
+        {
+            "image": "/media/M3Ddataset/M3D_Cap_npy/ct_quizze/000199/Coronal_with_oral_contrast.npy",
+            "text": "/media/M3Ddataset/M3D_Cap_npy/ct_quizze/000199/text.txt"
+        },
+        {
+            "image": "/media/M3Ddataset/M3D_Cap_npy/ct_quizze/000199/Axial_with_oral_contrast.npy",
+            "text": "/media/M3Ddataset/M3D_Cap_npy/ct_quizze/000199/text.txt"
+        },
+        {
+            "image": "/media/M3Ddataset/M3D_Cap_npy/ct_quizze/000136/Axial_non_contrast.npy",
+            "text": "/media/M3Ddataset/M3D_Cap_npy/ct_quizze/000136/text.txt"
+        },
+        {
+            "image": "/media/M3Ddataset/M3D_Cap_npy/ct_quizze/000314/Sagittal_MIP.npy",
+            "text": "/media/M3Ddataset/M3D_Cap_npy/ct_quizze/000314/text.txt"
+        },
+        {
+            "image": "/media/M3Ddataset/M3D_Cap_npy/ct_quizze/000314/Reformatted_VR_image.npy",
+            "text": "/media/M3Ddataset/M3D_Cap_npy/ct_quizze/000314/text.txt"
+        },
+        {
+            "image": "/media/M3Ddataset/M3D_Cap_npy/ct_quizze/000314/Sagittal_non_contrast.npy",
+            "text": "/media/M3Ddataset/M3D_Cap_npy/ct_quizze/000314/text.txt"
+        },
+        {
+            "image": "/media/M3Ddataset/M3D_Cap_npy/ct_quizze/000314/Coronal_non_contrast.npy",
+            "text": "/media/M3Ddataset/M3D_Cap_npy/ct_quizze/000314/text.txt"
+        },
+        {
+            "image": "/media/M3Ddataset/M3D_Cap_npy/ct_quizze/000314/Axial_non_contrast.npy",
+            "text": "/media/M3Ddataset/M3D_Cap_npy/ct_quizze/000314/text.txt"
+        },
+        {
+            "image": "/media/M3Ddataset/M3D_Cap_npy/ct_quizze/000101/Axial_non_contrast.npy",
+            "text": "/media/M3Ddataset/M3D_Cap_npy/ct_quizze/000101/text.txt"
+        },
+        {
+            "image": "/media/M3Ddataset/M3D_Cap_npy/ct_quizze/000101/Axial_lung_window.npy",
+            "text": "/media/M3Ddataset/M3D_Cap_npy/ct_quizze/000101/text.txt"
+        },
+        {
+            "image": "/media/M3Ddataset/M3D_Cap_npy/ct_quizze/000141/Axial_C__arterial_phase.npy",
+            "text": "/media/M3Ddataset/M3D_Cap_npy/ct_quizze/000141/text.txt"
+        },
+        {
+            "image": "/media/M3Ddataset/M3D_Cap_npy/ct_quizze/000141/Axial_non_contrast.npy",
+            "text": "/media/M3Ddataset/M3D_Cap_npy/ct_quizze/000141/text.txt"
+        },
+        {
+            "image": "/media/M3Ddataset/M3D_Cap_npy/ct_quizze/000282/Axial_C__portal_venous_phase.npy",
+            "text": "/media/M3Ddataset/M3D_Cap_npy/ct_quizze/000282/text.txt"
+        },
+        {
+            "image": "/media/M3Ddataset/M3D_Cap_npy/ct_quizze/000282/Axial_Oral_contrast.npy",
+            "text": "/media/M3Ddataset/M3D_Cap_npy/ct_quizze/000282/text.txt"
+        },
+        {
+            "image": "/media/M3Ddataset/M3D_Cap_npy/ct_quizze/000282/Coronal_C__portal_venous_phase.npy",
+            "text": "/media/M3Ddataset/M3D_Cap_npy/ct_quizze/000282/text.txt"
+        },
+        {
+            "image": "/media/M3Ddataset/M3D_Cap_npy/ct_quizze/000073/Axial_C__portal_venous_phase.npy",
+            "text": "/media/M3Ddataset/M3D_Cap_npy/ct_quizze/000073/text.txt"
+        },
+        {
+            "image": "/media/M3Ddataset/M3D_Cap_npy/ct_quizze/000073/Sagittal_C__portal_venous_phase.npy",
+            "text": "/media/M3Ddataset/M3D_Cap_npy/ct_quizze/000073/text.txt"
+        },
+        {
+            "image": "/media/M3Ddataset/M3D_Cap_npy/ct_quizze/000073/Coronal_C__portal_venous_phase.npy",
+            "text": "/media/M3Ddataset/M3D_Cap_npy/ct_quizze/000073/text.txt"
+        },
+        {
+            "image": "/media/M3Ddataset/M3D_Cap_npy/ct_quizze/000284/Coronal_C__arterial_phase.npy",
+            "text": "/media/M3Ddataset/M3D_Cap_npy/ct_quizze/000284/text.txt"
+        },
+        {
+            "image": "/media/M3Ddataset/M3D_Cap_npy/ct_quizze/000284/Axial_C__arterial_phase.npy",
+            "text": "/media/M3Ddataset/M3D_Cap_npy/ct_quizze/000284/text.txt"
+        },
+        {
+            "image": "/media/M3Ddataset/M3D_Cap_npy/ct_quizze/000284/CTA_3D_VR_.npy",
+            "text": "/media/M3Ddataset/M3D_Cap_npy/ct_quizze/000284/text.txt"
+        },
+        {
+            "image": "/media/M3Ddataset/M3D_Cap_npy/ct_quizze/000284/Axial_non_contrast.npy",
+            "text": "/media/M3Ddataset/M3D_Cap_npy/ct_quizze/000284/text.txt"
+        },
+        {
+            "image": "/media/M3Ddataset/M3D_Cap_npy/ct_quizze/000341/Axial_C__arterial_phase.npy",
+            "text": "/media/M3Ddataset/M3D_Cap_npy/ct_quizze/000341/text.txt"
+        },
+        {
+            "image": "/media/M3Ddataset/M3D_Cap_npy/ct_quizze/000341/Axial_non_contrast.npy",
+            "text": "/media/M3Ddataset/M3D_Cap_npy/ct_quizze/000341/text.txt"
+        },
+        {
+            "image": "/media/M3Ddataset/M3D_Cap_npy/ct_quizze/000346/Sagittal_non_contrast.npy",
+            "text": "/media/M3Ddataset/M3D_Cap_npy/ct_quizze/000346/text.txt"
+        },
+        {
+            "image": "/media/M3Ddataset/M3D_Cap_npy/ct_quizze/000346/Coronal_non_contrast.npy",
+            "text": "/media/M3Ddataset/M3D_Cap_npy/ct_quizze/000346/text.txt"
+        },
+        {
+            "image": "/media/M3Ddataset/M3D_Cap_npy/ct_quizze/000346/Axial_non_contrast.npy",
+            "text": "/media/M3Ddataset/M3D_Cap_npy/ct_quizze/000346/text.txt"
+        },
+        {
+            "image": "/media/M3Ddataset/M3D_Cap_npy/ct_quizze/000013/Axial_non_contrast.npy",
+            "text": "/media/M3Ddataset/M3D_Cap_npy/ct_quizze/000013/text.txt"
+        },
+        {
+            "image": "/media/M3Ddataset/M3D_Cap_npy/ct_quizze/000138/Sagittal_bone_window.npy",
+            "text": "/media/M3Ddataset/M3D_Cap_npy/ct_quizze/000138/text.txt"
+        },
+        {
+            "image": "/media/M3Ddataset/M3D_Cap_npy/ct_quizze/000138/Axial_bone_window.npy",
+            "text": "/media/M3Ddataset/M3D_Cap_npy/ct_quizze/000138/text.txt"
+        },
+        {
+            "image": "/media/M3Ddataset/M3D_Cap_npy/ct_quizze/000104/Sagittal_non_contrast.npy",
+            "text": "/media/M3Ddataset/M3D_Cap_npy/ct_quizze/000104/text.txt"
+        },
+        {
+            "image": "/media/M3Ddataset/M3D_Cap_npy/ct_quizze/000104/Coronal_non_contrast.npy",
+            "text": "/media/M3Ddataset/M3D_Cap_npy/ct_quizze/000104/text.txt"
+        },
+        {
+            "image": "/media/M3Ddataset/M3D_Cap_npy/ct_quizze/000104/Axial_non_contrast.npy",
+            "text": "/media/M3Ddataset/M3D_Cap_npy/ct_quizze/000104/text.txt"
+        },
+        {
+            "image": "/media/M3Ddataset/M3D_Cap_npy/ct_quizze/000104/Axial_bone_window.npy",
+            "text": "/media/M3Ddataset/M3D_Cap_npy/ct_quizze/000104/text.txt"
+        },
+        {
+            "image": "/media/M3Ddataset/M3D_Cap_npy/ct_quizze/000150/Sagittal_C__delayed.npy",
+            "text": "/media/M3Ddataset/M3D_Cap_npy/ct_quizze/000150/text.txt"
+        },
+        {
+            "image": "/media/M3Ddataset/M3D_Cap_npy/ct_quizze/000150/Axial_renal_excretory_phase.npy",
+            "text": "/media/M3Ddataset/M3D_Cap_npy/ct_quizze/000150/text.txt"
+        },
+        {
+            "image": "/media/M3Ddataset/M3D_Cap_npy/ct_quizze/000150/Coronal_C__delayed.npy",
+            "text": "/media/M3Ddataset/M3D_Cap_npy/ct_quizze/000150/text.txt"
+        },
+        {
+            "image": "/media/M3Ddataset/M3D_Cap_npy/ct_quizze/000289/3D_VRT_.npy",
+            "text": "/media/M3Ddataset/M3D_Cap_npy/ct_quizze/000289/text.txt"
+        },
+        {
+            "image": "/media/M3Ddataset/M3D_Cap_npy/ct_quizze/000289/Coronal_C__arterial_phase.npy",
+            "text": "/media/M3Ddataset/M3D_Cap_npy/ct_quizze/000289/text.txt"
+        },
+        {
+            "image": "/media/M3Ddataset/M3D_Cap_npy/ct_quizze/000253/Axial_C__portal_venous_phase.npy",
+            "text": "/media/M3Ddataset/M3D_Cap_npy/ct_quizze/000253/text.txt"
+        },
+        {
+            "image": "/media/M3Ddataset/M3D_Cap_npy/ct_quizze/000167/Sagittal_non_contrast.npy",
+            "text": "/media/M3Ddataset/M3D_Cap_npy/ct_quizze/000167/text.txt"
+        },
+        {
+            "image": "/media/M3Ddataset/M3D_Cap_npy/ct_quizze/000167/Coronal_non_contrast.npy",
+            "text": "/media/M3Ddataset/M3D_Cap_npy/ct_quizze/000167/text.txt"
+        },
+        {
+            "image": "/media/M3Ddataset/M3D_Cap_npy/ct_quizze/000167/Axial_non_contrast.npy",
+            "text": "/media/M3Ddataset/M3D_Cap_npy/ct_quizze/000167/text.txt"
+        },
+        {
+            "image": "/media/M3Ddataset/M3D_Cap_npy/ct_quizze/000118/Sagittal_C__arterial_phase.npy",
+            "text": "/media/M3Ddataset/M3D_Cap_npy/ct_quizze/000118/text.txt"
+        },
+        {
+            "image": "/media/M3Ddataset/M3D_Cap_npy/ct_quizze/000118/Axial_C__delayed.npy",
+            "text": "/media/M3Ddataset/M3D_Cap_npy/ct_quizze/000118/text.txt"
+        },
+        {
+            "image": "/media/M3Ddataset/M3D_Cap_npy/ct_quizze/000118/Axial_C__arterial_phase.npy",
+            "text": "/media/M3Ddataset/M3D_Cap_npy/ct_quizze/000118/text.txt"
+        },
+        {
+            "image": "/media/M3Ddataset/M3D_Cap_npy/ct_quizze/000238/Coronal_non_contrast.npy",
+            "text": "/media/M3Ddataset/M3D_Cap_npy/ct_quizze/000238/text.txt"
+        },
+        {
+            "image": "/media/M3Ddataset/M3D_Cap_npy/ct_quizze/000238/Axial_C__portal_venous_phase.npy",
+            "text": "/media/M3Ddataset/M3D_Cap_npy/ct_quizze/000238/text.txt"
+        },
+        {
+            "image": "/media/M3Ddataset/M3D_Cap_npy/ct_quizze/000238/Axial_non_contrast.npy",
+            "text": "/media/M3Ddataset/M3D_Cap_npy/ct_quizze/000238/text.txt"
+        },
+        {
+            "image": "/media/M3Ddataset/M3D_Cap_npy/ct_quizze/000238/Sagittal_C__portal_venous_phase.npy",
+            "text": "/media/M3Ddataset/M3D_Cap_npy/ct_quizze/000238/text.txt"
+        },
+        {
+            "image": "/media/M3Ddataset/M3D_Cap_npy/ct_quizze/000238/Coronal_C__portal_venous_phase.npy",
+            "text": "/media/M3Ddataset/M3D_Cap_npy/ct_quizze/000238/text.txt"
+        },
+        {
+            "image": "/media/M3Ddataset/M3D_Cap_npy/ct_quizze/000327/Axial_C__arterial_phase.npy",
+            "text": "/media/M3Ddataset/M3D_Cap_npy/ct_quizze/000327/text.txt"
+        },
+        {
+            "image": "/media/M3Ddataset/M3D_Cap_npy/ct_quizze/000063/Coronal_bone_window.npy",
+            "text": "/media/M3Ddataset/M3D_Cap_npy/ct_quizze/000063/text.txt"
+        },
+        {
+            "image": "/media/M3Ddataset/M3D_Cap_npy/ct_quizze/000063/3D_VR.npy",
+            "text": "/media/M3Ddataset/M3D_Cap_npy/ct_quizze/000063/text.txt"
+        },
+        {
+            "image": "/media/M3Ddataset/M3D_Cap_npy/ct_quizze/000063/Sagittal_bone_window.npy",
+            "text": "/media/M3Ddataset/M3D_Cap_npy/ct_quizze/000063/text.txt"
+        },
+        {
+            "image": "/media/M3Ddataset/M3D_Cap_npy/ct_quizze/000063/Axial_non_contrast.npy",
+            "text": "/media/M3Ddataset/M3D_Cap_npy/ct_quizze/000063/text.txt"
+        },
+        {
+            "image": "/media/M3Ddataset/M3D_Cap_npy/ct_quizze/000305/Axial_non_contrast.npy",
+            "text": "/media/M3Ddataset/M3D_Cap_npy/ct_quizze/000305/text.txt"
+        },
+        {
+            "image": "/media/M3Ddataset/M3D_Cap_npy/ct_quizze/000139/Sagittal_non_contrast.npy",
+            "text": "/media/M3Ddataset/M3D_Cap_npy/ct_quizze/000139/text.txt"
+        },
+        {
+            "image": "/media/M3Ddataset/M3D_Cap_npy/ct_quizze/000139/Coronal_non_contrast.npy",
+            "text": "/media/M3Ddataset/M3D_Cap_npy/ct_quizze/000139/text.txt"
+        },
+        {
+            "image": "/media/M3Ddataset/M3D_Cap_npy/ct_quizze/000139/Axial_non_contrast.npy",
+            "text": "/media/M3Ddataset/M3D_Cap_npy/ct_quizze/000139/text.txt"
+        },
+        {
+            "image": "/media/M3Ddataset/M3D_Cap_npy/ct_quizze/000363/Axial_C__portal_venous_phase.npy",
+            "text": "/media/M3Ddataset/M3D_Cap_npy/ct_quizze/000363/text.txt"
+        },
+        {
+            "image": "/media/M3Ddataset/M3D_Cap_npy/ct_quizze/000363/Sagittal_C__portal_venous_phase.npy",
+            "text": "/media/M3Ddataset/M3D_Cap_npy/ct_quizze/000363/text.txt"
+        },
+        {
+            "image": "/media/M3Ddataset/M3D_Cap_npy/ct_quizze/000363/Coronal_C__portal_venous_phase.npy",
+            "text": "/media/M3Ddataset/M3D_Cap_npy/ct_quizze/000363/text.txt"
+        },
+        {
+            "image": "/media/M3Ddataset/M3D_Cap_npy/ct_quizze/000011/Sagittal_non_contrast.npy",
+            "text": "/media/M3Ddataset/M3D_Cap_npy/ct_quizze/000011/text.txt"
+        },
+        {
+            "image": "/media/M3Ddataset/M3D_Cap_npy/ct_quizze/000011/Coronal_non_contrast.npy",
+            "text": "/media/M3Ddataset/M3D_Cap_npy/ct_quizze/000011/text.txt"
+        },
+        {
+            "image": "/media/M3Ddataset/M3D_Cap_npy/ct_quizze/000011/Axial_non_contrast.npy",
+            "text": "/media/M3Ddataset/M3D_Cap_npy/ct_quizze/000011/text.txt"
+        },
+        {
+            "image": "/media/M3Ddataset/M3D_Cap_npy/ct_quizze/000236/Coronal_bone_window.npy",
+            "text": "/media/M3Ddataset/M3D_Cap_npy/ct_quizze/000236/text.txt"
+        },
+        {
+            "image": "/media/M3Ddataset/M3D_Cap_npy/ct_quizze/000236/Axial_C__mixed_arteriovenous.npy",
+            "text": "/media/M3Ddataset/M3D_Cap_npy/ct_quizze/000236/text.txt"
+        },
+        {
+            "image": "/media/M3Ddataset/M3D_Cap_npy/ct_quizze/000236/Axial_bone_window.npy",
+            "text": "/media/M3Ddataset/M3D_Cap_npy/ct_quizze/000236/text.txt"
+        },
+        {
+            "image": "/media/M3Ddataset/M3D_Cap_npy/ct_quizze/000364/Axial_C__portal_venous_phase.npy",
+            "text": "/media/M3Ddataset/M3D_Cap_npy/ct_quizze/000364/text.txt"
+        },
+        {
+            "image": "/media/M3Ddataset/M3D_Cap_npy/ct_quizze/000364/Axial_non_contrast.npy",
+            "text": "/media/M3Ddataset/M3D_Cap_npy/ct_quizze/000364/text.txt"
+        },
+        {
+            "image": "/media/M3Ddataset/M3D_Cap_npy/ct_quizze/000364/Sagittal_C__portal_venous_phase.npy",
+            "text": "/media/M3Ddataset/M3D_Cap_npy/ct_quizze/000364/text.txt"
+        },
+        {
+            "image": "/media/M3Ddataset/M3D_Cap_npy/ct_quizze/000292/Axial_C__arterial_phase.npy",
+            "text": "/media/M3Ddataset/M3D_Cap_npy/ct_quizze/000292/text.txt"
+        },
+        {
+            "image": "/media/M3Ddataset/M3D_Cap_npy/ct_quizze/000074/Axial_C__portal_venous_phase.npy",
+            "text": "/media/M3Ddataset/M3D_Cap_npy/ct_quizze/000074/text.txt"
+        },
+        {
+            "image": "/media/M3Ddataset/M3D_Cap_npy/ct_quizze/000074/Coronal_C__portal_venous_phase.npy",
+            "text": "/media/M3Ddataset/M3D_Cap_npy/ct_quizze/000074/text.txt"
+        },
+        {
+            "image": "/media/M3Ddataset/M3D_Cap_npy/ct_quizze/000208/Axial_C__portal_venous_phase.npy",
+            "text": "/media/M3Ddataset/M3D_Cap_npy/ct_quizze/000208/text.txt"
+        },
+        {
+            "image": "/media/M3Ddataset/M3D_Cap_npy/ct_quizze/000208/Sagittal_C__portal_venous_phase.npy",
+            "text": "/media/M3Ddataset/M3D_Cap_npy/ct_quizze/000208/text.txt"
+        },
+        {
+            "image": "/media/M3Ddataset/M3D_Cap_npy/ct_quizze/000016/Axial_non_contrast.npy",
+            "text": "/media/M3Ddataset/M3D_Cap_npy/ct_quizze/000016/text.txt"
+        },
+        {
+            "image": "/media/M3Ddataset/M3D_Cap_npy/ct_quizze/000016/Axial_bone_window.npy",
+            "text": "/media/M3Ddataset/M3D_Cap_npy/ct_quizze/000016/text.txt"
+        },
+        {
+            "image": "/media/M3Ddataset/M3D_Cap_npy/ct_quizze/000131/Sagittal_C__arterial_phase.npy",
+            "text": "/media/M3Ddataset/M3D_Cap_npy/ct_quizze/000131/text.txt"
+        },
+        {
+            "image": "/media/M3Ddataset/M3D_Cap_npy/ct_quizze/000131/Coronal_C__arterial_phase.npy",
+            "text": "/media/M3Ddataset/M3D_Cap_npy/ct_quizze/000131/text.txt"
+        },
+        {
+            "image": "/media/M3Ddataset/M3D_Cap_npy/ct_quizze/000131/Axial_C__arterial_phase.npy",
+            "text": "/media/M3Ddataset/M3D_Cap_npy/ct_quizze/000131/text.txt"
+        },
+        {
+            "image": "/media/M3Ddataset/M3D_Cap_npy/ct_quizze/000356/Coronal_C__arterial_phase.npy",
+            "text": "/media/M3Ddataset/M3D_Cap_npy/ct_quizze/000356/text.txt"
+        },
+        {
+            "image": "/media/M3Ddataset/M3D_Cap_npy/ct_quizze/000356/Axial_C__arterial_phase.npy",
+            "text": "/media/M3Ddataset/M3D_Cap_npy/ct_quizze/000356/text.txt"
+        },
+        {
+            "image": "/media/M3Ddataset/M3D_Cap_npy/ct_quizze/000356/Axial_lung_window.npy",
+            "text": "/media/M3Ddataset/M3D_Cap_npy/ct_quizze/000356/text.txt"
+        },
+        {
+            "image": "/media/M3Ddataset/M3D_Cap_npy/ct_quizze/000044/3D_VR_.npy",
+            "text": "/media/M3Ddataset/M3D_Cap_npy/ct_quizze/000044/text.txt"
+        },
+        {
+            "image": "/media/M3Ddataset/M3D_Cap_npy/ct_quizze/000044/Axial_non_contrast.npy",
+            "text": "/media/M3Ddataset/M3D_Cap_npy/ct_quizze/000044/text.txt"
+        },
+        {
+            "image": "/media/M3Ddataset/M3D_Cap_npy/ct_quizze/000406/Coronal_non_contrast.npy",
+            "text": "/media/M3Ddataset/M3D_Cap_npy/ct_quizze/000406/text.txt"
+        },
+        {
+            "image": "/media/M3Ddataset/M3D_Cap_npy/ct_quizze/000406/Axial_non_contrast.npy",
+            "text": "/media/M3Ddataset/M3D_Cap_npy/ct_quizze/000406/text.txt"
+        },
+        {
+            "image": "/media/M3Ddataset/M3D_Cap_npy/ct_quizze/000315/Axial_C__70_s_.npy",
+            "text": "/media/M3Ddataset/M3D_Cap_npy/ct_quizze/000315/text.txt"
+        },
+        {
+            "image": "/media/M3Ddataset/M3D_Cap_npy/ct_quizze/000315/Axial_C__delayed_30_min.npy",
+            "text": "/media/M3Ddataset/M3D_Cap_npy/ct_quizze/000315/text.txt"
+        },
+        {
+            "image": "/media/M3Ddataset/M3D_Cap_npy/ct_quizze/000315/Axial_non_contrast.npy",
+            "text": "/media/M3Ddataset/M3D_Cap_npy/ct_quizze/000315/text.txt"
+        },
+        {
+            "image": "/media/M3Ddataset/M3D_Cap_npy/ct_quizze/000145/Sagittal_C__portal_venous_phase.npy",
+            "text": "/media/M3Ddataset/M3D_Cap_npy/ct_quizze/000145/text.txt"
+        },
+        {
+            "image": "/media/M3Ddataset/M3D_Cap_npy/ct_quizze/000145/Coronal_C__portal_venous_phase.npy",
+            "text": "/media/M3Ddataset/M3D_Cap_npy/ct_quizze/000145/text.txt"
+        },
+        {
+            "image": "/media/M3Ddataset/M3D_Cap_npy/ct_quizze/000261/Axial_C__portal_venous_phase.npy",
+            "text": "/media/M3Ddataset/M3D_Cap_npy/ct_quizze/000261/text.txt"
+        },
+        {
+            "image": "/media/M3Ddataset/M3D_Cap_npy/ct_quizze/000261/Sagittal_C__portal_venous_phase.npy",
+            "text": "/media/M3Ddataset/M3D_Cap_npy/ct_quizze/000261/text.txt"
+        },
+        {
+            "image": "/media/M3Ddataset/M3D_Cap_npy/ct_quizze/000261/Coronal_C__portal_venous_phase.npy",
+            "text": "/media/M3Ddataset/M3D_Cap_npy/ct_quizze/000261/text.txt"
+        },
+        {
+            "image": "/media/M3Ddataset/M3D_Cap_npy/ct_quizze/000263/Axial_C__CTPA.npy",
+            "text": "/media/M3Ddataset/M3D_Cap_npy/ct_quizze/000263/text.txt"
+        },
+        {
+            "image": "/media/M3Ddataset/M3D_Cap_npy/ct_quizze/000263/Axial_lung_window.npy",
+            "text": "/media/M3Ddataset/M3D_Cap_npy/ct_quizze/000263/text.txt"
+        },
+        {
+            "image": "/media/M3Ddataset/M3D_Cap_npy/ct_quizze/000368/Sagittal_C__portal_venous_phase.npy",
+            "text": "/media/M3Ddataset/M3D_Cap_npy/ct_quizze/000368/text.txt"
+        },
+        {
+            "image": "/media/M3Ddataset/M3D_Cap_npy/ct_quizze/000368/Coronal_C__portal_venous_phase.npy",
+            "text": "/media/M3Ddataset/M3D_Cap_npy/ct_quizze/000368/text.txt"
+        },
+        {
+            "image": "/media/M3Ddataset/M3D_Cap_npy/ct_quizze/000090/Axial_C__portal_venous_phase.npy",
+            "text": "/media/M3Ddataset/M3D_Cap_npy/ct_quizze/000090/text.txt"
+        },
+        {
+            "image": "/media/M3Ddataset/M3D_Cap_npy/ct_quizze/000090/Axial_lung_window.npy",
+            "text": "/media/M3Ddataset/M3D_Cap_npy/ct_quizze/000090/text.txt"
+        },
+        {
+            "image": "/media/M3Ddataset/M3D_Cap_npy/ct_quizze/000153/Coronal_renal_excretory_phase.npy",
+            "text": "/media/M3Ddataset/M3D_Cap_npy/ct_quizze/000153/text.txt"
+        },
+        {
+            "image": "/media/M3Ddataset/M3D_Cap_npy/ct_quizze/000153/Sagittal_renal_excretory_phase.npy",
+            "text": "/media/M3Ddataset/M3D_Cap_npy/ct_quizze/000153/text.txt"
+        },
+        {
+            "image": "/media/M3Ddataset/M3D_Cap_npy/ct_quizze/000153/Axial_renal_excretory_phase.npy",
+            "text": "/media/M3Ddataset/M3D_Cap_npy/ct_quizze/000153/text.txt"
+        },
+        {
+            "image": "/media/M3Ddataset/M3D_Cap_npy/ct_quizze/000153/Axial_renal_parenchymal_phase.npy",
+            "text": "/media/M3Ddataset/M3D_Cap_npy/ct_quizze/000153/text.txt"
+        },
+        {
+            "image": "/media/M3Ddataset/M3D_Cap_npy/ct_quizze/000153/Axial_non_contrast.npy",
+            "text": "/media/M3Ddataset/M3D_Cap_npy/ct_quizze/000153/text.txt"
+        },
+        {
+            "image": "/media/M3Ddataset/M3D_Cap_npy/ct_quizze/000153/Axial_renal_cortical_phase.npy",
+            "text": "/media/M3Ddataset/M3D_Cap_npy/ct_quizze/000153/text.txt"
+        },
+        {
+            "image": "/media/M3Ddataset/M3D_Cap_npy/ct_quizze/000128/Sagittal_C__arterial_phase.npy",
+            "text": "/media/M3Ddataset/M3D_Cap_npy/ct_quizze/000128/text.txt"
+        },
+        {
+            "image": "/media/M3Ddataset/M3D_Cap_npy/ct_quizze/000128/Coronal_C__arterial_phase.npy",
+            "text": "/media/M3Ddataset/M3D_Cap_npy/ct_quizze/000128/text.txt"
+        },
+        {
+            "image": "/media/M3Ddataset/M3D_Cap_npy/ct_quizze/000128/Axial_C__arterial_phase.npy",
+            "text": "/media/M3Ddataset/M3D_Cap_npy/ct_quizze/000128/text.txt"
+        },
+        {
+            "image": "/media/M3Ddataset/M3D_Cap_npy/ct_quizze/000128/Axial_lung_window.npy",
+            "text": "/media/M3Ddataset/M3D_Cap_npy/ct_quizze/000128/text.txt"
+        },
+        {
+            "image": "/media/M3Ddataset/M3D_Cap_npy/ct_quizze/000359/Axial_non_contrast.npy",
+            "text": "/media/M3Ddataset/M3D_Cap_npy/ct_quizze/000359/text.txt"
+        },
+        {
+            "image": "/media/M3Ddataset/M3D_Cap_npy/ct_quizze/000113/Sagittal_C__arterial_phase.npy",
+            "text": "/media/M3Ddataset/M3D_Cap_npy/ct_quizze/000113/text.txt"
+        },
+        {
+            "image": "/media/M3Ddataset/M3D_Cap_npy/ct_quizze/000113/Coronal_C__arterial_phase.npy",
+            "text": "/media/M3Ddataset/M3D_Cap_npy/ct_quizze/000113/text.txt"
+        },
+        {
+            "image": "/media/M3Ddataset/M3D_Cap_npy/ct_quizze/000113/Axial_C__arterial_phase.npy",
+            "text": "/media/M3Ddataset/M3D_Cap_npy/ct_quizze/000113/text.txt"
+        },
+        {
+            "image": "/media/M3Ddataset/M3D_Cap_npy/ct_quizze/000113/Axial_lung_window.npy",
+            "text": "/media/M3Ddataset/M3D_Cap_npy/ct_quizze/000113/text.txt"
+        },
+        {
+            "image": "/media/M3Ddataset/M3D_Cap_npy/ct_quizze/000032/Axial_C__portal_venous_phase.npy",
+            "text": "/media/M3Ddataset/M3D_Cap_npy/ct_quizze/000032/text.txt"
+        },
+        {
+            "image": "/media/M3Ddataset/M3D_Cap_npy/ct_quizze/000032/Coronal_C__portal_venous_phase.npy",
+            "text": "/media/M3Ddataset/M3D_Cap_npy/ct_quizze/000032/text.txt"
+        },
+        {
+            "image": "/media/M3Ddataset/M3D_Cap_npy/ct_quizze/000201/Axial_renal_excretory_phase.npy",
+            "text": "/media/M3Ddataset/M3D_Cap_npy/ct_quizze/000201/text.txt"
+        },
+        {
+            "image": "/media/M3Ddataset/M3D_Cap_npy/ct_quizze/000201/Axial_renal_parenchymal_phase.npy",
+            "text": "/media/M3Ddataset/M3D_Cap_npy/ct_quizze/000201/text.txt"
+        },
+        {
+            "image": "/media/M3Ddataset/M3D_Cap_npy/ct_quizze/000201/Coronal_MIP.npy",
+            "text": "/media/M3Ddataset/M3D_Cap_npy/ct_quizze/000201/text.txt"
+        },
+        {
+            "image": "/media/M3Ddataset/M3D_Cap_npy/ct_quizze/000201/Axial_non_contrast.npy",
+            "text": "/media/M3Ddataset/M3D_Cap_npy/ct_quizze/000201/text.txt"
+        },
+        {
+            "image": "/media/M3Ddataset/M3D_Cap_npy/ct_quizze/000201/Coronal_scout_view_.npy",
+            "text": "/media/M3Ddataset/M3D_Cap_npy/ct_quizze/000201/text.txt"
+        },
+        {
+            "image": "/media/M3Ddataset/M3D_Cap_npy/ct_quizze/000375/Axial_C__portal_venous_phase.npy",
+            "text": "/media/M3Ddataset/M3D_Cap_npy/ct_quizze/000375/text.txt"
+        },
+        {
+            "image": "/media/M3Ddataset/M3D_Cap_npy/ct_quizze/000375/Sagittal_C__portal_venous_phase.npy",
+            "text": "/media/M3Ddataset/M3D_Cap_npy/ct_quizze/000375/text.txt"
+        },
+        {
+            "image": "/media/M3Ddataset/M3D_Cap_npy/ct_quizze/000375/Coronal_C__portal_venous_phase.npy",
+            "text": "/media/M3Ddataset/M3D_Cap_npy/ct_quizze/000375/text.txt"
+        },
+        {
+            "image": "/media/M3Ddataset/M3D_Cap_npy/ct_quizze/000239/Axial_with_oral_contrast.npy",
+            "text": "/media/M3Ddataset/M3D_Cap_npy/ct_quizze/000239/text.txt"
+        },
+        {
+            "image": "/media/M3Ddataset/M3D_Cap_npy/ct_quizze/000239/Axial_C__portal_venous_phase.npy",
+            "text": "/media/M3Ddataset/M3D_Cap_npy/ct_quizze/000239/text.txt"
+        },
+        {
+            "image": "/media/M3Ddataset/M3D_Cap_npy/ct_quizze/000239/Coronal_C__portal_venous_phase.npy",
+            "text": "/media/M3Ddataset/M3D_Cap_npy/ct_quizze/000239/text.txt"
+        },
+        {
+            "image": "/media/M3Ddataset/M3D_Cap_npy/ct_quizze/000267/Axial_.npy",
+            "text": "/media/M3Ddataset/M3D_Cap_npy/ct_quizze/000267/text.txt"
+        },
+        {
+            "image": "/media/M3Ddataset/M3D_Cap_npy/ct_quizze/000057/Axial_C__portal_venous_phase.npy",
+            "text": "/media/M3Ddataset/M3D_Cap_npy/ct_quizze/000057/text.txt"
+        }
+    ],
+    "test": [
+        {
+            "image": "/media/M3Ddataset/M3D_Cap_npy/ct_quizze/000141/Axial_C__portal_venous_phase.npy",
+            "text": "/media/M3Ddataset/M3D_Cap_npy/ct_quizze/000141/text.txt"
+        },
+        {
+            "image": "/media/M3Ddataset/M3D_Cap_npy/ct_quizze/000284/Sagittal_C__arterial_phase.npy",
+            "text": "/media/M3Ddataset/M3D_Cap_npy/ct_quizze/000284/text.txt"
+        },
+        {
+            "image": "/media/M3Ddataset/M3D_Cap_npy/ct_quizze/000289/Sagittal_C__arterial_phase.npy",
+            "text": "/media/M3Ddataset/M3D_Cap_npy/ct_quizze/000289/text.txt"
+        },
+        {
+            "image": "/media/M3Ddataset/M3D_Cap_npy/ct_quizze/000289/Axial_C__arterial_phase.npy",
+            "text": "/media/M3Ddataset/M3D_Cap_npy/ct_quizze/000289/text.txt"
+        },
+        {
+            "image": "/media/M3Ddataset/M3D_Cap_npy/ct_quizze/000253/Sagittal_C__portal_venous_phase.npy",
+            "text": "/media/M3Ddataset/M3D_Cap_npy/ct_quizze/000253/text.txt"
+        },
+        {
+            "image": "/media/M3Ddataset/M3D_Cap_npy/ct_quizze/000378/Axial_C__arterial_phase.npy",
+            "text": "/media/M3Ddataset/M3D_Cap_npy/ct_quizze/000378/text.txt"
+        },
+        {
+            "image": "/media/M3Ddataset/M3D_Cap_npy/ct_quizze/000364/Coronal_C__portal_venous_phase.npy",
+            "text": "/media/M3Ddataset/M3D_Cap_npy/ct_quizze/000364/text.txt"
+        },
+        {
+            "image": "/media/M3Ddataset/M3D_Cap_npy/ct_quizze/000292/Axial_C__portal_venous_phase.npy",
+            "text": "/media/M3Ddataset/M3D_Cap_npy/ct_quizze/000292/text.txt"
+        },
+        {
+            "image": "/media/M3Ddataset/M3D_Cap_npy/ct_quizze/000292/Axial_non_contrast.npy",
+            "text": "/media/M3Ddataset/M3D_Cap_npy/ct_quizze/000292/text.txt"
+        },
+        {
+            "image": "/media/M3Ddataset/M3D_Cap_npy/ct_quizze/000145/Axial_C__portal_venous_phase.npy",
+            "text": "/media/M3Ddataset/M3D_Cap_npy/ct_quizze/000145/text.txt"
+        },
+        {
+            "image": "/media/M3Ddataset/M3D_Cap_npy/ct_quizze/000368/Axial_renal_excretory_phase.npy",
+            "text": "/media/M3Ddataset/M3D_Cap_npy/ct_quizze/000368/text.txt"
+        },
+        {
+            "image": "/media/M3Ddataset/M3D_Cap_npy/ct_quizze/000368/Axial_C__portal_venous_phase.npy",
+            "text": "/media/M3Ddataset/M3D_Cap_npy/ct_quizze/000368/text.txt"
+        },
+        {
+            "image": "/media/M3Ddataset/M3D_Cap_npy/ct_quizze/000090/Axial_C__arterial_phase.npy",
+            "text": "/media/M3Ddataset/M3D_Cap_npy/ct_quizze/000090/text.txt"
+        },
+        {
+            "image": "/media/M3Ddataset/M3D_Cap_npy/ct_quizze/000384/Ultrasound_.npy",
+            "text": "/media/M3Ddataset/M3D_Cap_npy/ct_quizze/000384/text.txt"
+        },
+        {
+            "image": "/media/M3Ddataset/M3D_Cap_npy/ct_quizze/000201/Coronal_VRT_.npy",
+            "text": "/media/M3Ddataset/M3D_Cap_npy/ct_quizze/000201/text.txt"
+        },
+        {
+            "image": "/media/M3Ddataset/M3D_Cap_npy/ct_quizze/000057/Axial_non_contrast.npy",
+            "text": "/media/M3Ddataset/M3D_Cap_npy/ct_quizze/000057/text.txt"
+        }
+    ]
+}
