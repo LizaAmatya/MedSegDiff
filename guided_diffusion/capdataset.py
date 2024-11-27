@@ -58,11 +58,13 @@ class CapDataset(Dataset):
                 # image_abs_path = os.path.join(self.data_root, image_path)
                 try:
                     image = np.load(image_path)
+                    print('image size----', image.size)
                 except Exception as e:
                     raise ValueError(f"Error loading image at {image_path}: {e}")
         
-                if self.transform:
-                    image = self.transform(image)  # Apply transformation
+                # if self.transform:
+                #     image = self.transform(image)  # Apply transformation
+                
                 print('in here--------', image.size)
                 text_path = data["text"]
                 # text_abs_path = os.path.join(self.data_root, text_path)
