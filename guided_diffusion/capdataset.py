@@ -14,6 +14,7 @@ class CapDataset(Dataset):
         self.clip_model = clip_model
         self.processor = processor
         self.mode = mode
+        self.dtype = torch.float16 if args.use_fp16 else torch.float32
 
         # self.image_tokens = "<im_patch>" * args.proj_out_num
 
@@ -57,11 +58,17 @@ class CapDataset(Dataset):
                 # image_abs_path = os.path.join(self.data_root, image_path)
                 try:
                     image = np.load(image_path)
+                    print(f"Image size (raw numpy): {image.shape}")
+
+                    # Convert numpy array to PyTorch tensor
+                    image = torch.tensor(image, dtype=self.dtype)  # Ensure correct dtype
+                    print(f"Image size (tensor): {image.shape}")
+
                 except Exception as e:
                     raise ValueError(f"Error loading image at {image_path}: {e}")
 
-                # if self.transform:
-                #     image = self.transform(image)  # Apply transformation
+                if self.transform:
+                    image = self.transform(image)  # Apply transformation
                 
                 text_path = data["text"]
                 # text_abs_path = os.path.join(self.data_root, text_path)
