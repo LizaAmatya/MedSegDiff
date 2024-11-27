@@ -61,14 +61,14 @@ class CapDataset(Dataset):
                 text_abs_path = os.path.join(self.data_root, text_path)
                 with open(text_abs_path, "r") as text_file:
                     raw_text = text_file.read()
-                answer = raw_text
+                # answer = raw_text
 
-                prompt_question = random.choice(self.caption_prompts)
+                # prompt_question = random.choice(self.caption_prompts)
 
-                question = self.image_tokens + prompt_question
+                # question = self.image_tokens + prompt_question
 
                 text_tensor = self.tokenizer(
-                    question + " " + answer,
+                    raw_text,
                     max_length=self.args.max_length,
                     truncation=True,
                     padding="max_length",
@@ -82,27 +82,27 @@ class CapDataset(Dataset):
                 if valid_len < len(input_id):
                     input_id[valid_len] = self.tokenizer.eos_token_id
 
-                question_tensor = self.tokenizer(
-                    question,
-                    max_length=self.args.max_length,
-                    truncation=True,
-                    padding="max_length",
-                    return_tensors="pt",
-                )
-                question_len = torch.sum(question_tensor["attention_mask"][0])
+                # question_tensor = self.tokenizer(
+                #     question,
+                #     max_length=self.args.max_length,
+                #     truncation=True,
+                #     padding="max_length",
+                #     return_tensors="pt",
+                # )
+                # question_len = torch.sum(question_tensor["attention_mask"][0])
 
                 label = input_id.clone()
                 label[label == self.tokenizer.pad_token_id] = -100
-                label[:question_len] = -100
+                # label[:question_len] = -100
 
                 ret = {
                     "image": image,
                     "input_id": input_id,
                     "label": label,
                     "attention_mask": attention_mask,
-                    "question": question,
-                    "answer": answer,
-                    "question_type": "Caption",
+                    # "question": question,
+                    "text": raw_text,
+                    "text_type": "Caption",
                 }
                 return ret
 
