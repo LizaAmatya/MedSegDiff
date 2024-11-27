@@ -62,14 +62,15 @@ class CapDataset(Dataset):
         
                 if self.transform:
                     image = self.transform(image)  # Apply transformation
-
+                print('in here--------', image.size)
                 text_path = data["text"]
                 # text_abs_path = os.path.join(self.data_root, text_path)
                 with open(text_path, "r") as text_file:
                     raw_text = text_file.read()
-                    
+                print('text raw', raw_text)
                 text_tokens = self.clip_model.tokenize([raw_text]).squeeze(0)
 
+                print('text tokens ----------', text_tokens.size)
                 ret = {
                     "image": image,
                     "text_tokens": text_tokens,
