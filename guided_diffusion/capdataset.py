@@ -8,10 +8,10 @@ import numpy as np
 
 
 class CapDataset(Dataset):
-    def __init__(self, args, tokenizer, mode="train"):
+    def __init__(self, args, mode="train"):
         self.args = args
         self.data_root = args.data_dir
-        self.tokenizer = tokenizer
+        # self.tokenizer = tokenizer
         self.mode = mode
 
         # self.image_tokens = "<im_patch>" * args.proj_out_num
