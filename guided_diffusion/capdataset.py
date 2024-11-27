@@ -53,6 +53,7 @@ class CapDataset(Dataset):
         for _ in range(max_attempts):
             try:
                 data = self.data_list[idx]
+                print('dtaa-----',data)
                 image_path = data["image"]
                 # image_abs_path = os.path.join(self.data_root, image_path)
                 try:
