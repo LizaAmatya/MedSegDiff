@@ -8,11 +8,11 @@ import numpy as np
 
 
 class CapDataset(Dataset):
-    def __init__(self, args, clip_model, mode="train"):
+    def __init__(self, args, clip_model, preprocess, mode="train"):
         self.args = args
         self.data_root = args.data_dir
         self.clip_model = clip_model
-        # self.tokenizer = tokenizer
+        self.preprocess = preprocess
         self.mode = mode
 
         # self.image_tokens = "<im_patch>" * args.proj_out_num
@@ -61,7 +61,7 @@ class CapDataset(Dataset):
                     print('image size----', image.size)
                 except Exception as e:
                     raise ValueError(f"Error loading image at {image_path}: {e}")
-        
+
                 # if self.transform:
                 #     image = self.transform(image)  # Apply transformation
                 
@@ -71,12 +71,18 @@ class CapDataset(Dataset):
                 with open(text_path, "r") as text_file:
                     raw_text = text_file.read()
                 print('text raw', raw_text)
-                text_tokens = self.clip_model.tokenize([raw_text]).squeeze(0)
+                inputs = self.processor(text=[raw_text], images=image, return_tensors="pt", padding=True)
 
-                print('text tokens ----------', text_tokens.size)
+                # Forward pass through the model
+                with torch.no_grad():
+                    outputs = self.clip_model(**inputs)
+
+                # Access embeddings
+                image_features = outputs.image_embeds
+                text_features = outputs.text_embeds
                 ret = {
-                    "image": image,
-                    "text_tokens": text_tokens,
+                    "image_embeds": image_features,
+                    "text_embeds": text_features,
                     "text": raw_text,
                 }
                 

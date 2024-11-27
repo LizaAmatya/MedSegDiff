@@ -106,15 +106,15 @@ class TrainLoop:
             ]
 
         # if th.cuda.is_available():  # For distibuted GPU process
-        #     self.use_ddp = True
-        #     self.ddp_model = DDP(
-        #         self.model,
-        #         device_ids=[dist_util.dev()],
-        #         output_device=dist_util.dev(),
-        #         broadcast_buffers=False,
-        #         bucket_cap_mb=128,
-        #         find_unused_parameters=False,
-        #     )
+            # self.use_ddp = True
+            # self.ddp_model = DDP(
+            #     self.model,
+            #     device_ids=[dist_util.dev()],
+            #     output_device=dist_util.dev(),
+            #     broadcast_buffers=False,
+            #     bucket_cap_mb=128,
+            #     find_unused_parameters=False,
+            # )
         # else:
         #     if dist.get_world_size() > 1:
         #         logger.warn(
@@ -123,8 +123,9 @@ class TrainLoop:
         #         )
         #     self.use_ddp = False
         #     self.ddp_model = self.model
-        
-        if th.backends.mps.is_available():
+        if th.cuda.is_available():
+            self.device = 'cuda'
+        elif th.backends.mps.is_available():
             self.device = 'mps'
         else:
             self.device = 'cpu'
