@@ -54,13 +54,18 @@ class CapDataset(Dataset):
             try:
                 data = self.data_list[idx]
                 image_path = data["image"]
-                image_abs_path = os.path.join(self.data_root, image_path)
-                image = np.load(image_abs_path)  # nomalized 0-1, C,D,H,W
-                image = self.transform(image)
+                # image_abs_path = os.path.join(self.data_root, image_path)
+                try:
+                    image = np.load(image_path)
+                except Exception as e:
+                    raise ValueError(f"Error loading image at {image_path}: {e}")
+        
+                if self.transform:
+                    image = self.transform(image)  # Apply transformation
 
                 text_path = data["text"]
-                text_abs_path = os.path.join(self.data_root, text_path)
-                with open(text_abs_path, "r") as text_file:
+                # text_abs_path = os.path.join(self.data_root, text_path)
+                with open(text_path, "r") as text_file:
                     raw_text = text_file.read()
                     
                 text_tokens = self.clip_model.tokenize([raw_text]).squeeze(0)
@@ -70,6 +75,7 @@ class CapDataset(Dataset):
                     "text_tokens": text_tokens,
                     "text": raw_text,
                 }
+                
                 return ret
 
                 # answer = raw_text
