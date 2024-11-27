@@ -1,7 +1,6 @@
 import os
 import sys
 import pickle
-import cv2
 from skimage import io
 import matplotlib.pyplot as plt
 import numpy as np
