@@ -25,7 +25,7 @@ class CapDataset(Dataset):
             ttf.RandomRotation(90),  # RandRotate90 equivalent (though not axis-specific)
             ttf.RandomHorizontalFlip(p=0.10),  # RandFlip for spatial_axis=0
             ttf.RandomVerticalFlip(p=0.10),  # RandFlip for spatial_axis=1 (Vertical Flip)
-            ttf.RandomApply([ttf.RandomRotation([90])], p=0.10),  # Rough equivalent for 3D flips (manual setup needed)
+            ttf.RandomApply([ttf.RandomRotation(degrees=(-90, 90))], p=0.10), # Rough equivalent for 3D flips (manual setup needed)
             ttf.RandomApply([ttf.RandomAffine(degrees=0, scale=(0.9, 1.1))], p=0.5),  # RandScaleIntensity equivalent
             ttf.RandomApply([ttf.RandomAffine(degrees=0, translate=(0.1, 0.1))], p=0.5),  # RandShiftIntensity equivalent
             ttf.ToTensor()  # ToTensor (MONAI's dtype option not needed here as default float is used)
