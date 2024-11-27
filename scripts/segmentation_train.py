@@ -121,7 +121,7 @@ def create_argparser():
         gpu_dev = "0",
         multi_gpu = None, #"0,1,2"
         out_dir='./results/',
-        cap_data_json='./dataset_split.json'
+        cap_data_json='/dataset_split.json'
     )
     defaults.update(model_and_diffusion_defaults())
     parser = argparse.ArgumentParser()
