@@ -2,6 +2,8 @@
 import os
 import sys
 import argparse
+
+from guided_diffusion.capdataset import CapDataset
 # sys.path.append("../")
 sys.path.append("./")
 from guided_diffusion import dist_util, logger
@@ -44,6 +46,12 @@ def main():
 
         ds = BRATSDataset3D(args.data_dir, transform_train, test_flag=False)
         args.in_ch = 5
+    elif args.data_name == 'M3D_CAP':
+        tran_list = [transforms.Resize((args.image_size,args.image_size)),]
+        transform_train = transforms.Compose(tran_list)
+
+        ds = CapDataset(args, transform_train, False)
+        args.in_ch = 4
     else :
         tran_list = [transforms.Resize((args.image_size,args.image_size)), transforms.ToTensor(),]
         transform_train = transforms.Compose(tran_list)
@@ -111,7 +119,8 @@ def create_argparser():
         fp16_scale_growth=1e-3,
         gpu_dev = "0",
         multi_gpu = None, #"0,1,2"
-        out_dir='./results/'
+        out_dir='./results/',
+        cap_data_json='./dataset_split.json'
     )
     defaults.update(model_and_diffusion_defaults())
     parser = argparse.ArgumentParser()

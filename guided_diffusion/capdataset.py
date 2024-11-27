@@ -16,27 +16,9 @@ class CapDataset(Dataset):
 
         self.image_tokens = "<im_patch>" * args.proj_out_num
 
-        with open(args.cap_data_path, "r") as file:
+        with open(args.cap_data_json, "r") as file:
             self.json_file = json.load(file)
         self.data_list = self.json_file[mode]
-
-        self.caption_prompts = [
-            "Can you provide a caption consists of findings for this medical image?",
-            "Describe the findings of the medical image you see.",
-            "Please caption this medical scan with findings.",
-            "What is the findings of this image?",
-            "Describe this medical scan with findings.",
-            "Please write a caption consists of findings for this image.",
-            "Can you summarize with findings the images presented?",
-            "Please caption this scan with findings.",
-            "Please provide a caption consists of findings for this medical image.",
-            "Can you provide a summary consists of findings of this radiograph?",
-            "What are the findings presented in this medical scan?",
-            "Please write a caption consists of findings for this scan.",
-            "Can you provide a description consists of findings of this medical scan?",
-            "Please caption this medical scan with findings.",
-            "Can you provide a caption consists of findings for this medical scan?",
-        ]
 
         train_transform = ttf.Compose([
             ttf.RandomRotation(90),  # RandRotate90 equivalent (though not axis-specific)
