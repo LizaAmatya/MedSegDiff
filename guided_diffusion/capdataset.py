@@ -8,9 +8,10 @@ import numpy as np
 
 
 class CapDataset(Dataset):
-    def __init__(self, args, mode="train"):
+    def __init__(self, args, clip_model, mode="train"):
         self.args = args
         self.data_root = args.data_dir
+        self.clip_model = clip_model
         # self.tokenizer = tokenizer
         self.mode = mode
 
@@ -61,26 +62,36 @@ class CapDataset(Dataset):
                 text_abs_path = os.path.join(self.data_root, text_path)
                 with open(text_abs_path, "r") as text_file:
                     raw_text = text_file.read()
+                    
+                text_tokens = self.clip_model.tokenize([raw_text]).squeeze(0)
+
+                ret = {
+                    "image": image,
+                    "text_tokens": text_tokens,
+                    "text": raw_text,
+                }
+                return ret
+
                 # answer = raw_text
 
                 # prompt_question = random.choice(self.caption_prompts)
 
                 # question = self.image_tokens + prompt_question
 
-                text_tensor = self.tokenizer(
-                    raw_text,
-                    max_length=self.args.max_length,
-                    truncation=True,
-                    padding="max_length",
-                    return_tensors="pt",
-                )
+                # text_tensor = self.tokenizer(
+                #     raw_text,
+                #     max_length=self.args.max_length,
+                #     truncation=True,
+                #     padding="max_length",
+                #     return_tensors="pt",
+                # )
 
-                input_id = text_tensor["input_ids"][0]
-                attention_mask = text_tensor["attention_mask"][0]
+                # input_id = text_tensor["input_ids"][0]
+                # attention_mask = text_tensor["attention_mask"][0]
 
-                valid_len = torch.sum(attention_mask)
-                if valid_len < len(input_id):
-                    input_id[valid_len] = self.tokenizer.eos_token_id
+                # valid_len = torch.sum(attention_mask)
+                # if valid_len < len(input_id):
+                #     input_id[valid_len] = self.tokenizer.eos_token_id
 
                 # question_tensor = self.tokenizer(
                 #     question,
@@ -91,20 +102,9 @@ class CapDataset(Dataset):
                 # )
                 # question_len = torch.sum(question_tensor["attention_mask"][0])
 
-                label = input_id.clone()
-                label[label == self.tokenizer.pad_token_id] = -100
+                # label = input_id.clone()
+                # label[label == self.tokenizer.pad_token_id] = -100
                 # label[:question_len] = -100
-
-                ret = {
-                    "image": image,
-                    "input_id": input_id,
-                    "label": label,
-                    "attention_mask": attention_mask,
-                    # "question": question,
-                    "text": raw_text,
-                    "text_type": "Caption",
-                }
-                return ret
 
             except Exception as e:
                 print(f"Error in __getitem__ at index {idx}: {e}")

@@ -50,7 +50,9 @@ def dev():
     """
     Get the device to use for torch.distributed.
     """
-    if th.backends.mps.is_available():
+    if th.cuda.is_available():
+        return th.device('cuda')
+    elif th.backends.mps.is_available():
         return th.device(f"mps")
     return th.device("cpu")
 

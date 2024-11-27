@@ -23,6 +23,7 @@ from guided_diffusion.train_util import TrainLoop
 # from visdom import Visdom
 # viz = Visdom(port=8850)
 import torchvision.transforms as transforms
+import clip
 
 
 def main():
@@ -33,6 +34,7 @@ def main():
     logger.configure(dir = args.out_dir)
 
     logger.log("creating data loader...")
+    device = dist_util.dev()
 
     if args.data_name == 'ISIC':
         tran_list = [transforms.Resize((args.image_size,args.image_size)), transforms.ToTensor(),]
@@ -50,8 +52,9 @@ def main():
     elif args.data_name == 'M3D_CAP':
         # tran_list = [transforms.Resize((args.image_size,args.image_size)),]
         # transform_train = transforms.Compose(tran_list)
+        clip_model, preprocess = clip.load("ViT-B/32", device=device)
 
-        ds = CapDataset(args, mode='train')
+        ds = CapDataset(args, clip_model=clip_model, mode='train')
         args.in_ch = 4
     else :
         tran_list = [transforms.Resize((args.image_size,args.image_size)), transforms.ToTensor(),]
@@ -75,7 +78,7 @@ def main():
         model = th.nn.DataParallel(model,device_ids=[int(id) for id in args.multi_gpu.split(',')])
         model.to(device = th.device('mps', int(args.gpu_dev)))
     else:
-        model.to(dist_util.dev())
+        model.to(device=device)
     schedule_sampler = create_named_schedule_sampler(args.schedule_sampler, diffusion,  maxt=args.diffusion_steps)
 
 
