@@ -66,6 +66,8 @@ def main():
         batch_size=args.batch_size,
         shuffle=True)
     data = iter(datal)
+    
+    print('dataloader data----------', data, data.shape)
 
     logger.log("creating model and diffusion...")
 
