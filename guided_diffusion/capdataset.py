@@ -59,22 +59,22 @@ class CapDataset(Dataset):
                 try:
                     image = np.load(image_path)
                     print(f"Image size (raw numpy): {image.shape}")
+                    
+                    if self.transform:
+                        image = self.transform(image)
 
-                    # Convert numpy array to PyTorch tensor
-                    image = torch.tensor(image, dtype=self.dtype)  # Ensure correct dtype
+                    image = torch.tensor(image, dtype=self.dtype)
                     print(f"Image size (tensor): {image.shape}")
 
                 except Exception as e:
                     raise ValueError(f"Error loading image at {image_path}: {e}")
-
-                if self.transform:
-                    image = self.transform(image)  # Apply transformation
                 
                 text_path = data["text"]
                 # text_abs_path = os.path.join(self.data_root, text_path)
                 with open(text_path, "r") as text_file:
                     raw_text = text_file.read()
                 print('text raw', raw_text)
+                
                 inputs = self.processor(text=[raw_text], images=image, return_tensors="pt", padding=True)
 
                 # Forward pass through the model
@@ -82,12 +82,12 @@ class CapDataset(Dataset):
                     outputs = self.clip_model(**inputs)
 
                 # Access embeddings
-                image_features = outputs.image_embeds
+                # image_features = outputs.image_embeds
                 text_features = outputs.text_embeds
                 ret = {
-                    "image_embeds": image_features,
-                    "text_embeds": text_features,
-                    "text": raw_text,
+                    "image": image,
+                    "condition": text_features,
+                    "name": raw_text,
                 }
                 
                 return ret
