@@ -14,7 +14,7 @@ class CapDataset(Dataset):
         self.tokenizer = tokenizer
         self.mode = mode
 
-        self.image_tokens = "<im_patch>" * args.proj_out_num
+        # self.image_tokens = "<im_patch>" * args.proj_out_num
 
         with open(args.cap_data_json, "r") as file:
             self.json_file = json.load(file)
