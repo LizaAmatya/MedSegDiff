@@ -10,7 +10,7 @@ import numpy as np
 class CapDataset(Dataset):
     def __init__(self, args, tokenizer, mode="train"):
         self.args = args
-        self.data_root = args.data_root
+        self.data_root = args.data_dir
         self.tokenizer = tokenizer
         self.mode = mode
 
