@@ -3,7 +3,6 @@ import os
 import sys
 import argparse
 
-from guided_diffusion.capdataset import CapDataset
 # sys.path.append("../")
 sys.path.append("./")
 from guided_diffusion import dist_util, logger
@@ -11,6 +10,8 @@ from guided_diffusion.resample import create_named_schedule_sampler
 from guided_diffusion.bratsloader import BRATSDataset, BRATSDataset3D
 from guided_diffusion.isicloader import ISICDataset
 from guided_diffusion.custom_dataset_loader import CustomDataset
+from guided_diffusion.capdataset import CapDataset
+
 from guided_diffusion.script_util import (
     model_and_diffusion_defaults,
     create_model_and_diffusion,
