@@ -33,7 +33,7 @@ class CapDataset(Dataset):
 
         val_transform = ttf.Compose(
             [
-                ttf.ToTensor(dtype=torch.float),
+                ttf.ToTensor(),
             ]
         )
         # set_track_meta(False)
