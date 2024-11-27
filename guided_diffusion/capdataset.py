@@ -84,11 +84,7 @@ class CapDataset(Dataset):
                 # Access embeddings
                 # image_features = outputs.image_embeds
                 text_features = outputs.text_embeds
-                ret = {
-                    "image": image,
-                    "condition": text_features,
-                    "name": raw_text,
-                }
+                ret = (image, text_features, image_path)        #image, condition, name (metadata)
                 
                 return ret
 

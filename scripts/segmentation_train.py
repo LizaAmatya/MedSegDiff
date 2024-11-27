@@ -67,7 +67,7 @@ def main():
         shuffle=True)
     data = iter(datal)
     
-    print('dataloader data----------', data, data.shape)
+    print('dataloader data----------', data)
 
     logger.log("creating model and diffusion...")
 
