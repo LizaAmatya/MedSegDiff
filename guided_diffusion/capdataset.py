@@ -8,11 +8,11 @@ import numpy as np
 
 
 class CapDataset(Dataset):
-    def __init__(self, args, clip_model, preprocess, mode="train"):
+    def __init__(self, args, clip_model, processor, mode="train"):
         self.args = args
         self.data_root = args.data_dir
         self.clip_model = clip_model
-        self.preprocess = preprocess
+        self.processor = processor
         self.mode = mode
 
         # self.image_tokens = "<im_patch>" * args.proj_out_num

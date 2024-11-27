@@ -50,9 +50,9 @@ def main():
         ds = BRATSDataset3D(args.data_dir, transform_train, test_flag=False)
         args.in_ch = 5
     elif args.data_name == 'M3D_CAP':
-        clip_model, preprocess = clip.load("ViT-B/32", device=device)
+        clip_model, processor = clip.load("ViT-B/32", device=device)
 
-        ds = CapDataset(args, clip_model=clip_model, preprocess=preprocess, mode='train')
+        ds = CapDataset(args, clip_model=clip_model, processor=processor, mode='train')
         args.in_ch = 4
     else :
         tran_list = [transforms.Resize((args.image_size,args.image_size)), transforms.ToTensor(),]
