@@ -16,7 +16,14 @@ class CapDataset(Dataset):
         self.processor = processor
         self.mode = mode
         self.dtype = torch.float16 if args.use_fp16 else torch.float32
-
+        
+        if torch.cuda.is_available():
+            self.device = "cuda"
+        elif torch.backends.mps.is_available():
+            self.device = "mps"
+        else:
+            self.device = "cpu"
+        
         # self.image_tokens = "<im_patch>" * args.proj_out_num
 
         with open(args.cap_data_json, "r") as file:
@@ -75,17 +82,11 @@ class CapDataset(Dataset):
                 with open(text_path, "r") as text_file:
                     raw_text = text_file.read()
                 
-                # inputs = self.processor(text=[raw_text], images=image, return_tensors="pt", padding=True)
-
-                # # Forward pass through the model
-                # with torch.no_grad():
-                #     outputs = self.clip_model(**inputs)
-
-                # # Access embeddings
-                # # image_features = outputs.image_embeds
-                # text_features = outputs.text_embeds
+                chunks = self.split_text(raw_text)
+                chunk_tensors = [clip.tokenize([chunk]).squeeze(0).to(self.device) for chunk in chunks]
+                text_tensor = torch.cat(chunk_tensors, dim=0) 
                 
-                text_tensor = clip.tokenize([raw_text]).squeeze(0).to(self.device)
+                # text_tensor = clip.tokenize([raw_text]).squeeze(0).to(self.device)
                 ret = (image, text_tensor, image_path)        #image, condition, name (metadata)
                 
                 return ret
@@ -127,3 +128,12 @@ class CapDataset(Dataset):
             except Exception as e:
                 print(f"Error in __getitem__ at index {idx}: {e}")
                 idx = random.randint(0, len(self.data_list) - 1)
+
+    def split_text(raw_text, max_tokens=77):
+        words = raw_text.split()
+        chunks = []
+        for i in range(0, len(words), max_tokens - 1):  # Reserve one token for [EOS]
+            chunk = " ".join(words[i : i + max_tokens - 1])
+            chunks.append(chunk)
+        return chunks
+    
