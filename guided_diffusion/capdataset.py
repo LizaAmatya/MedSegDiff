@@ -129,7 +129,7 @@ class CapDataset(Dataset):
                 print(f"Error in __getitem__ at index {idx}: {e}")
                 idx = random.randint(0, len(self.data_list) - 1)
 
-    def split_text(raw_text, max_tokens=77):
+    def split_text(raw_text: str, max_tokens=77):
         words = raw_text.split()
         chunks = []
         for i in range(0, len(words), max_tokens - 1):  # Reserve one token for [EOS]
