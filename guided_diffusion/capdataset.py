@@ -84,7 +84,7 @@ class CapDataset(Dataset):
                     image = torch.tensor(image, dtype=self.dtype)
                     print(f"Image size (tensor): {image.shape}")
                     
-                    desired_size = (128, 256, 256)  # target size
+                    target_size = (128, 256, 256)  # target size
                     resized_image = F.interpolate(image.unsqueeze(0).unsqueeze(0), size=target_size[1:], mode='bilinear', align_corners=False)
                     image = resized_image.squeeze(0).squeeze(0)
 
