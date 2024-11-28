@@ -6,6 +6,7 @@ from torch.utils.data import Dataset
 import json
 import torchvision.transforms as ttf
 import numpy as np
+import torch.nn.functional as F
 
 
 def split_text(raw_text: str, max_tokens=77):
@@ -82,6 +83,9 @@ class CapDataset(Dataset):
 
                     image = torch.tensor(image, dtype=self.dtype)
                     print(f"Image size (tensor): {image.shape}")
+                    
+                    desired_size = (128, 256, 256)  # target size
+                    image = F.interpolate(image.unsqueeze(0), size=desired_size[1:], mode="trilinear", align_corners=False).squeeze(0)
 
                 except Exception as e:
                     raise ValueError(f"Error loading image at {image_path}: {e}")
