@@ -85,7 +85,7 @@ class CapDataset(Dataset):
                     print(f"Image size (tensor): {image.shape}")
                     
                     target_size = (128, 256, 256)  # target size
-                    resized_image = F.interpolate(image.unsqueeze(0).unsqueeze(0), size=target_size[1:], mode='bilinear', align_corners=False)
+                    resized_image = F.interpolate(image.unsqueeze(0).unsqueeze(0), size=target_size[1:], mode='trilinear', align_corners=False)
                     image = resized_image.squeeze(0).squeeze(0)
 
                 except Exception as e:
