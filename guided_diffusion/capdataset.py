@@ -83,10 +83,13 @@ class CapDataset(Dataset):
 
                     image = torch.tensor(image, dtype=self.dtype)
                     print(f"Image size (tensor): {image.shape}")
-                    image = image.unsqueeze(0)
                     target_size = (128, 256, 256)  # target size
-                    resized_image = F.interpolate(image.unsqueeze(0).unsqueeze(0), size=target_size[1:], mode='trilinear', align_corners=False)
-                    image = resized_image.squeeze(0).squeeze(0)
+                    target_depth = 128
+                    current_depth = image.shape[1]  # Depth is usually the second dimension
+                    if current_depth != target_depth:
+                        # Resize only the depth dimension
+                        image = F.interpolate(image, size=(target_depth, image.shape[2], image.shape[3]), 
+                                            mode='trilinear', align_corners=False)
 
                 except Exception as e:
                     raise ValueError(f"Error loading image at {image_path}: {e}")
