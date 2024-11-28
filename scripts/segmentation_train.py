@@ -52,8 +52,6 @@ def main():
     elif args.data_name == 'M3D_CAP':
         clip_model, processor = clip.load("ViT-B/32", device=device)
 
-tokenizer = CLIPTokenizer.from_pretrained("openai/clip-vit-base-patch32")
-
         ds = CapDataset(args, clip_model=clip_model, processor=processor, mode='train')
         args.in_ch = 4
     else :
