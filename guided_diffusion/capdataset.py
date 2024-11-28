@@ -91,12 +91,14 @@ class CapDataset(Dataset):
                 with open(text_path, "r") as text_file:
                     raw_text = text_file.read()
                 
-                chunks = split_text(raw_text)
-                chunk_tensors = [clip.tokenize([chunk]).squeeze(0).to(self.device) for chunk in chunks]
-                text_tensor = torch.cat(chunk_tensors, dim=0) 
-                
                 # text_tensor = clip.tokenize([raw_text]).squeeze(0).to(self.device)
-                ret = (image, text_tensor, image_path)        #image, condition, name (metadata)
+                # Tokenize the text
+                tokenized_text = clip.tokenize([raw_text]).to(self.device)
+
+                # Pass the tokenized text to the model
+                with torch.no_grad():
+                    text_features = self.clip_model.encode_text(tokenized_text)
+                ret = (image, text_features, image_path)        #image, condition, name (metadata)
                 
                 return ret
 
