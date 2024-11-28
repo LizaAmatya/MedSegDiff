@@ -58,11 +58,10 @@ class CapDataset(Dataset):
                 # image_abs_path = os.path.join(self.data_root, image_path)
                 try:
                     image = np.load(image_path)
-                    print(f"Image size (raw numpy): {image.shape}")
                     
-                    if self.transform:
-                        image = self.transform(image)
-                        print('image shape----- after transform', image.shape)
+                    # if self.transform:
+                    #     image = self.transform(image)
+                    #     print('image shape----- after transform', image.shape)
 
                     image = torch.tensor(image, dtype=self.dtype)
                     print(f"Image size (tensor): {image.shape}")
@@ -76,16 +75,18 @@ class CapDataset(Dataset):
                     raw_text = text_file.read()
                 print('text raw', raw_text)
                 
-                inputs = self.processor(text=[raw_text], images=image, return_tensors="pt", padding=True)
+                # inputs = self.processor(text=[raw_text], images=image, return_tensors="pt", padding=True)
 
-                # Forward pass through the model
-                with torch.no_grad():
-                    outputs = self.clip_model(**inputs)
+                # # Forward pass through the model
+                # with torch.no_grad():
+                #     outputs = self.clip_model(**inputs)
 
-                # Access embeddings
-                # image_features = outputs.image_embeds
-                text_features = outputs.text_embeds
-                ret = (image, text_features, image_path)        #image, condition, name (metadata)
+                # # Access embeddings
+                # # image_features = outputs.image_embeds
+                # text_features = outputs.text_embeds
+                
+                text_tensor = self.clip_model.tokenize([raw_text]).squeeze(0).to(self.device)
+                ret = (image, text_tensor, image_path)        #image, condition, name (metadata)
                 
                 return ret
 
