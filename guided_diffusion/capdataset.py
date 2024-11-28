@@ -1,5 +1,6 @@
 import os
 import random
+import clip
 import torch
 from torch.utils.data import Dataset
 import json
@@ -73,7 +74,6 @@ class CapDataset(Dataset):
                 # text_abs_path = os.path.join(self.data_root, text_path)
                 with open(text_path, "r") as text_file:
                     raw_text = text_file.read()
-                print('text raw', raw_text)
                 
                 # inputs = self.processor(text=[raw_text], images=image, return_tensors="pt", padding=True)
 
@@ -85,7 +85,7 @@ class CapDataset(Dataset):
                 # # image_features = outputs.image_embeds
                 # text_features = outputs.text_embeds
                 
-                text_tensor = self.clip_model.tokenize([raw_text]).squeeze(0).to(self.device)
+                text_tensor = clip.tokenize([raw_text]).squeeze(0).to(self.device)
                 ret = (image, text_tensor, image_path)        #image, condition, name (metadata)
                 
                 return ret
