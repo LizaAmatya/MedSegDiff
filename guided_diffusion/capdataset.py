@@ -8,6 +8,15 @@ import torchvision.transforms as ttf
 import numpy as np
 
 
+def split_text(raw_text: str, max_tokens=77):
+    words = raw_text.split()
+    chunks = []
+    for i in range(0, len(words), max_tokens - 1):  # Reserve one token for [EOS]
+        chunk = " ".join(words[i : i + max_tokens - 1])
+        chunks.append(chunk)
+    return chunks
+
+
 class CapDataset(Dataset):
     def __init__(self, args, clip_model, processor, mode="train"):
         self.args = args
@@ -82,7 +91,7 @@ class CapDataset(Dataset):
                 with open(text_path, "r") as text_file:
                     raw_text = text_file.read()
                 
-                chunks = self.split_text(raw_text)
+                chunks = split_text(raw_text)
                 chunk_tensors = [clip.tokenize([chunk]).squeeze(0).to(self.device) for chunk in chunks]
                 text_tensor = torch.cat(chunk_tensors, dim=0) 
                 
@@ -128,12 +137,3 @@ class CapDataset(Dataset):
             except Exception as e:
                 print(f"Error in __getitem__ at index {idx}: {e}")
                 idx = random.randint(0, len(self.data_list) - 1)
-
-    def split_text(raw_text: str, max_tokens=77):
-        words = raw_text.split()
-        chunks = []
-        for i in range(0, len(words), max_tokens - 1):  # Reserve one token for [EOS]
-            chunk = " ".join(words[i : i + max_tokens - 1])
-            chunks.append(chunk)
-        return chunks
-    
