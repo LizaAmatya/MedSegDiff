@@ -93,7 +93,7 @@ class CapDataset(Dataset):
                 
                 # text_tensor = clip.tokenize([raw_text]).squeeze(0).to(self.device)
                 # Tokenize the text
-                tokenized_text = clip.tokenize([raw_text]).to(self.device)
+                tokenized_text = clip.tokenize([raw_text], truncate=True).to(self.device)
 
                 # Pass the tokenized text to the model
                 with torch.no_grad():
