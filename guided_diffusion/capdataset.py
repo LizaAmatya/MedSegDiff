@@ -62,6 +62,7 @@ class CapDataset(Dataset):
                     
                     if self.transform:
                         image = self.transform(image)
+                        print('image shape----- after transform', image.shape)
 
                     image = torch.tensor(image, dtype=self.dtype)
                     print(f"Image size (tensor): {image.shape}")
